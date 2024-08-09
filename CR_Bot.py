@@ -64,9 +64,6 @@ thus adding to the "coins spent event"
 
 screen_w, screen_h = pyautogui.size()
 
-#2560 x 1440 Screen size
-#rgb(255, 68, 70)
-
 DEBUG_MODE = False
 
 #Hardcoded Color
@@ -118,7 +115,6 @@ index = 0
 size = len(Position_array)
 
 #Bot Loop
-
 time.sleep(2)
 while True:
     if keyboard.is_pressed("a"):
@@ -135,9 +131,3 @@ while True:
         index = 0
     else:
         index += 1
-
-
-#time.sleep(2)
-#getCancelPosition()
-
-#pyautogui.moveTo(Cancel_x, 1020)
