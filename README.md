@@ -13,9 +13,11 @@ Doubly linked lists. Stacks - Tema 1
 
 [Browser](#browser)
 
+[Data Structures](#data-structures)
+
 [Commands](#commands)
 
-[Data Structures](#data-structures)
+[Implementation Details](#implementation-details)
 
 [After Thoughts](#after-thoughts)
 
@@ -171,6 +173,62 @@ Key operations:
   * Will fail if no such tab exists
 
 If any of these operations fail, **403 Forbidden** error will be showed.
+
+## Implementation Details
+
+Most methods used copy the element rather than saving it directly.
+This protects the elements from outside modifications to the data.
+
+### Browser Creation
+
+For the **create_browser** method:
+1. create the browser and the list
+2. create a sentinel tab (id = -1) via the **create_sentinel_tab**, and push it to the list. This will be the list's head
+3. create a new tab (id = 0), with a default page via the **create_empty_tab** method, and push it to the list
+4. remove both the copies of sentinel and new tabs from memory
+
+### Page History Navigation
+
+For **backward/forward_page** methods:
+1. get the top element from the stack
+2. remove the top element from the stack
+3. push the current page to the opposite stack
+4. remove the copy of the current page from memory
+
+### Tab Navigation
+
+Using the **next/prev_tab** methods, the current tab will be assigned as the next/previous tab in the list.
+
+The sentinel tab will be ignored in this operation.
+
+### Tab Closing
+
+Using the **close_current_tab** method, the current tab will be removed:
+1. get the current tab from the list
+2. remove the current tab of the browser
+3. set the new current tab with the one recieved from the list
+
+### Page Opening
+
+To open a page from the list of pages, the **open_page** method is used:
+1. push the current page into the backward stack
+2. remove the copy of the current page
+3. create the new page using the template of the one requested from the list of pages
+4. clear the forward stack entirely (but don't free the memory of the stack)
+5. assign the current page to the current tab
+6. update the list with the changes to the current tab
+7. remove any copies
+
+### Memory Freeing
+
+There are 3 levels of freeing:
+1. page freeing
+2. tab freeing
+3. browser freeing
+
+Each freeing method will be contained in the one below its respective level.
+
+This ensures the complete clearing of memory.
 
 ## After Thoughts
 
