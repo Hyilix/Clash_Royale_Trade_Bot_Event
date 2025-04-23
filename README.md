@@ -15,7 +15,9 @@ Doubly linked lists. Stacks - Tema 1
 
 [Commands](#commands)
 
-[After thoughts](#after-thoughts)
+[Data Structures](#data-structures)
+
+[After Thoughts](#after-thoughts)
 
 ## General Overview
 
@@ -31,7 +33,7 @@ Thus, we need to be carefull about the memory used to avoid duplicates.
 
 To implement the browser, we first need to clarify the components of a browser:
 
-## Main components
+## Main Components
 
 ### Pages
 
@@ -108,14 +110,31 @@ Any tabs created will be updated in the *tablist* of the browser.
 
 The browser is at the heart of all commands. There can be no more than one browser.
 
-## Data structures
+## Data Structures
 
-### Linked lists
+### Doubly Linked Lists
 
-Linked lists are used for stack implementation.
+Circular doubly linked lists are used for tab management.
+Their circular natures provides easiness in tab navigation.
 
 Key operations:
-* **ll_cr
+* **dll_create** for list creation
+* **dll_get_nth_node** for node accession
+* **dll_add_nth_node** for adding to the list
+* **dll_remove_nth_node** for removing
+
+### Stack
+
+Stacks are used to implement page history, in the form of *forward/backward_stack*.
+
+It is implemented using a crude *linked list*.
+
+Key operations:
+* **st_create** for stack creation
+* **st_peek** for page accession
+* **st_push** for adding to the stack
+* **st_pop** for removing from the stack
+* **st_is_empty** to check if the stack is empty
 
 ## Commands
 
@@ -153,7 +172,7 @@ Key operations:
 
 If any of these operations fail, **403 Forbidden** error will be showed.
 
-## After thoughts
+## After Thoughts
 
 After finishing this homework, I learned a lot about basic implementation and usage of lists and stacks.
 This project is too basic and too crude to be called a browser, but there are some functions that are useful for a browser.
