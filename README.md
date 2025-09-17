@@ -13,4 +13,6 @@ This bot does just that.
 
 More details inside the .py file itself.
 
-> Most of the values are hardcoded. Feel free to modify to your heart's content.
+> Most of the values are hardcoded.
+
+> Feel free to use and modify to your heart's content.
